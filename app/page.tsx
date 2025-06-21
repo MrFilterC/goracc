@@ -13,25 +13,25 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 flex justify-between items-center p-6 md:p-10">
-        <div className="flex items-center gap-3">
+      <header className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 p-4 sm:p-6 md:p-10">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Image
             src="/main.png"
             alt="gor/acc logo"
-            width={48}
-            height={48}
-            className="rounded-full"
+            width={40}
+            height={40}
+            className="rounded-full sm:w-12 sm:h-12"
           />
-          <span className="text-xl font-bold">gor/acc</span>
+          <span className="text-lg sm:text-xl font-bold">gor/acc</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <TokenPrice />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link 
               href="https://x.com/i/communities/1936391513543766206"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 gradient-border px-4 py-2 rounded-full hover:scale-105 transition-transform"
+              className="flex items-center gap-2 gradient-border px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base rounded-full hover:scale-105 transition-transform"
               title="X Community"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -43,7 +43,7 @@ export default function Home() {
               href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
               title="View on DexScreener"
             >
               <Image
@@ -75,12 +75,12 @@ export default function Home() {
           </div>
 
           {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold">
             <span className="gradient-text">Gorbagana Acceleration</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto px-4">
             The ultimate utility is coming to Gorbagana chain
           </p>
 
@@ -96,14 +96,14 @@ export default function Home() {
           </div>
 
           {/* Token info */}
-          <div className="mt-16 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-xl mx-auto">
-            <h3 className="text-lg font-semibold mb-4">$gor/acc Token</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
+          <div className="mt-12 sm:mt-16 mx-4 sm:mx-auto p-4 sm:p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-xl">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">$gor/acc Token</h3>
+            <div className="space-y-2 text-xs sm:text-sm">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2">
                 <span className="text-gray-400">Contract:</span>
                 <span className="font-mono text-xs break-all">31TxE8kyhUJfq8JPeJNTdVPZeibQrcNnDbkvnigVpump</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2">
                 <span className="text-gray-400">Network:</span>
                 <span>Solana <span className="text-gray-500">(for now)</span></span>
               </div>

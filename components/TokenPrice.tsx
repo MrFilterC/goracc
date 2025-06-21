@@ -79,12 +79,12 @@ export default function TokenPrice() {
   }
 
   return (
-    <div className={`flex items-center gap-2 text-sm bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 transition-all ${flashClass}`}>
-      <span className="text-gray-400">MC:</span>
+    <div className={`flex items-center gap-1 sm:gap-2 text-xs sm:text-sm bg-white/5 backdrop-blur-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/10 transition-all ${flashClass}`}>
+      <span className="text-gray-400 hidden sm:inline">MC:</span>
       <span className="font-mono font-semibold">{formatMarketCap(marketCap)}</span>
       {priceChange !== null && !isNaN(priceChange) && (
         <span className={`text-xs ${priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-          {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(2)}%
+          {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(1)}%
         </span>
       )}
     </div>
