@@ -39,7 +39,7 @@ export default function Home() {
               </svg>
             </Link>
             <Link 
-              href="https://x.com/i/communities/1936391513543766206"
+              href="https://x.com/i/communities/1936538249490481482"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 gradient-border px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base rounded-full hover:scale-105 transition-transform"
