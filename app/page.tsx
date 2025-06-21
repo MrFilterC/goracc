@@ -24,16 +24,37 @@ export default function Home() {
           />
           <span className="text-xl font-bold">gor/acc</span>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <TokenPrice />
-          <Link 
-            href="https://x.com/i/communities/1936391513543766206"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gradient-border px-4 py-2 rounded-full hover:scale-105 transition-transform"
-          >
-            Join Community
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link 
+              href="https://x.com/i/communities/1936391513543766206"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 gradient-border px-4 py-2 rounded-full hover:scale-105 transition-transform"
+              title="X Community"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span>Community</span>
+            </Link>
+            <Link 
+              href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+              title="View on DexScreener"
+            >
+              <Image
+                src="/dexlogo.png"
+                alt="DexScreener"
+                width={20}
+                height={20}
+                className="w-5 h-5"
+              />
+            </Link>
+          </div>
         </div>
       </header>
 
