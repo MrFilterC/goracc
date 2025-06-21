@@ -69,7 +69,7 @@ export default function TokenPrice() {
   if (loading) {
     return (
       <div className="flex items-center gap-2 text-sm">
-        <div className="w-24 h-5 bg-gray-800 rounded animate-pulse"></div>
+        <div className="w-24 h-6 gradient-card rounded-full animate-pulse"></div>
       </div>
     );
   }
@@ -79,14 +79,22 @@ export default function TokenPrice() {
   }
 
   return (
-    <div className={`flex items-center gap-1 sm:gap-2 text-xs sm:text-sm bg-white/5 backdrop-blur-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/10 transition-all ${flashClass}`}>
-      <span className="text-gray-400 hidden sm:inline">MC:</span>
-      <span className="font-mono font-semibold">{formatMarketCap(marketCap)}</span>
-      {priceChange !== null && !isNaN(priceChange) && (
-        <span className={`text-xs ${priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-          {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(1)}%
-        </span>
-      )}
+    <div className={`relative flex items-center gap-1 sm:gap-2 text-xs sm:text-sm gradient-card px-3 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 ${flashClass}`}>
+      {/* Glow effect for active state */}
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-full blur-md opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative flex items-center gap-1 sm:gap-2">
+        <span className="text-gray-400 hidden sm:inline">MC:</span>
+        <span className="font-mono font-semibold gradient-text">{formatMarketCap(marketCap)}</span>
+        {priceChange !== null && !isNaN(priceChange) && (
+          <div className="flex items-center gap-1">
+            <div className={`w-1.5 h-1.5 rounded-full ${priceChange >= 0 ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
+            <span className={`text-xs font-medium ${priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(1)}%
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
