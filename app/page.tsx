@@ -688,7 +688,7 @@ export default function Home() {
                         </p>
                       </div>
                       <div className="flex items-center justify-between text-gray-500 text-sm border-t border-gray-600/30 pt-3">
-                        <span>2:15 PM · Dec 19, 2024</span>
+                        <span>2:15 PM · Jun 19, 2025</span>
                         <Link 
                           href="https://x.com/lex_node/status/1935469530626601081"
                           target="_blank"
