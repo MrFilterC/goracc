@@ -261,12 +261,36 @@ export default function Home() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
               {/* Buy Sell Page */}
-              <div className="relative overflow-hidden rounded-2xl">
-                <div className="gradient-card p-6">
-                  <h3 className="text-xl font-semibold gradient-text mb-4">Buy Sell Page</h3>
-                  <div className="relative rounded-xl overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300">
+                {/* Background Animation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold gradient-text">Buy Sell Page</h3>
+                  </div>
+                  
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                    Advanced trading interface with real-time price charts and instant swap functionality
+                  </p>
+                  
+                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    
                     <video 
-                      className="w-full h-auto" 
+                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
@@ -274,17 +298,46 @@ export default function Home() {
                       <source src="/buy_sell_page.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                    
+                    {/* Video Duration Badge */}
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
+                      0:15
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Token Create */}
-              <div className="relative overflow-hidden rounded-2xl">
-                <div className="gradient-card p-6">
-                  <h3 className="text-xl font-semibold gradient-text mb-4">Token Create</h3>
-                  <div className="relative rounded-xl overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300">
+                {/* Background Animation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold gradient-text">Token Create</h3>
+                  </div>
+                  
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                    One-click token creation with automated liquidity pools and fair launch mechanisms
+                  </p>
+                  
+                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    
                     <video 
-                      className="w-full h-auto" 
+                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
@@ -292,17 +345,46 @@ export default function Home() {
                       <source src="/token_create.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                    
+                    {/* Video Duration Badge */}
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
+                      0:45
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Explore Page */}
-              <div className="relative overflow-hidden rounded-2xl lg:col-span-2 xl:col-span-1">
-                <div className="gradient-card p-6">
-                  <h3 className="text-xl font-semibold gradient-text mb-4">Explore Page</h3>
-                  <div className="relative rounded-xl overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300 lg:col-span-2 xl:col-span-1">
+                {/* Background Animation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold gradient-text">Explore Page</h3>
+                  </div>
+                  
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                    Discover trending tokens, analytics dashboard and community-driven project listings
+                  </p>
+                  
+                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    
                     <video 
-                      className="w-full h-auto" 
+                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
@@ -310,8 +392,21 @@ export default function Home() {
                       <source src="/explore page.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                    
+                    {/* Video Duration Badge */}
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
+                      0:30
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Coming Soon Badge */}
+            <div className="text-center mt-12">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/20 to-blue-500/20 backdrop-blur-sm px-6 py-3 rounded-full border border-orange-500/30">
+                <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-blue-400 rounded-full animate-pulse" />
+                <span className="text-sm font-semibold text-gray-300 uppercase tracking-wider">More Features Coming Soon</span>
               </div>
             </div>
           </div>
