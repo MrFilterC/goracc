@@ -142,12 +142,12 @@ export default function Home() {
 
                 {/* Title */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="gradient-text">gormeme.fun</span>
+                  <span className="gradient-text">Gorbagana Acceleration</span>
                 </h1>
 
-                {/* Subtitle */}
+                {/* Main subtitle */}
                 <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12">
-                  Revolutionary gaming experience is being built, powered by gor/acc team
+                  First official launchpad of Gorbagana Chain is being built
                 </p>
 
                 {/* Status Badge */}
@@ -159,44 +159,8 @@ export default function Home() {
                 {/* Mystery text */}
                 <div className="space-y-4 mb-12">
                   <p className="text-lg text-gray-400 pulse-glow">
-                    The future of meme gaming is in development...
+                    The future of Gorbagana ecosystem is in development...
                   </p>
-                </div>
-
-                {/* Tweet Embed */}
-                <div className="mt-8 max-w-xl mx-auto">
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <div className="gradient-card p-6">
-                      <div className="flex items-start gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-white">CryptoSamet</span>
-                            <span className="text-gray-400 text-sm">@CryptoSamettt</span>
-                          </div>
-                          <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                            🚀 Exciting news in the crypto space! The gor/acc team is building something revolutionary. 
-                            Can't wait to see what they're cooking up! #Crypto #Innovation #Building
-                          </p>
-                          <div className="flex items-center justify-between text-gray-500 text-sm">
-                            <span>12:34 PM · Dec 22, 2024</span>
-                            <Link 
-                              href="https://x.com/CryptoSamettt/status/1936878341211971889"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-400 hover:text-blue-300 transition-colors"
-                            >
-                              View on X →
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -226,6 +190,126 @@ export default function Home() {
                       <p className="text-xs text-gray-400 mb-1">Network</p>
                       <p className="text-gray-300">Solana <span className="text-gray-500">(for now)</span></p>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Live Updates Section */}
+        <section className="relative z-10 py-16 px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Live Updates</h2>
+            
+            {/* Tweet Card */}
+            <div className="relative overflow-hidden rounded-2xl">
+              <div className="gradient-card p-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-semibold text-white">CryptoSamet</span>
+                      <span className="text-gray-400 text-sm">@CryptoSamettt</span>
+                    </div>
+                    <div className="text-gray-300 text-sm leading-relaxed mb-4">
+                      <p className="mb-3">
+                        Alright guys, I think it's time to clear a few things up.
+                      </p>
+                      <p className="mb-3">
+                        I loved Gor/Acc as a meme, paid for the DEX listing out of my own pocket, and launched the X community myself — everything's been going great. Then we listened to the community feedback and decided to build real upgrades for Gor/Acc.
+                      </p>
+                      <p className="mb-3">
+                        No clickbait. No "coming soon." No scams, no bundles, no influencers, no paid shills. Just a solid project built together with the community.
+                      </p>
+                      <p className="mb-3">
+                        Leaving you some visuals — we'll answer your questions in the Twitter Space we're hosting Monday evening.
+                      </p>
+                      <p className="mb-3">
+                        The community is with us, and we're ready to take this to the next level.
+                      </p>
+                      <p className="text-orange-400 font-semibold">
+                        Join the $Gor/Acc army. 🫡
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between text-gray-500 text-sm border-t border-gray-600/30 pt-3">
+                      <span>12:34 PM · Jun 22, 2025</span>
+                      <Link 
+                        href="https://x.com/CryptoSamettt/status/1936878341211971889"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        View on X →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Beta Screenshots Section */}
+        <section className="relative z-10 py-16 px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Beta Screenshots</h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {/* Buy Sell Page */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <div className="gradient-card p-6">
+                  <h3 className="text-xl font-semibold gradient-text mb-4">Buy Sell Page</h3>
+                  <div className="relative rounded-xl overflow-hidden">
+                    <video 
+                      className="w-full h-auto" 
+                      controls 
+                      preload="metadata"
+                      poster="/logo333.png"
+                    >
+                      <source src="/buy_sell_page.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              {/* Token Create */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <div className="gradient-card p-6">
+                  <h3 className="text-xl font-semibold gradient-text mb-4">Token Create</h3>
+                  <div className="relative rounded-xl overflow-hidden">
+                    <video 
+                      className="w-full h-auto" 
+                      controls 
+                      preload="metadata"
+                      poster="/logo333.png"
+                    >
+                      <source src="/token_create.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              {/* Explore Page */}
+              <div className="relative overflow-hidden rounded-2xl lg:col-span-2 xl:col-span-1">
+                <div className="gradient-card p-6">
+                  <h3 className="text-xl font-semibold gradient-text mb-4">Explore Page</h3>
+                  <div className="relative rounded-xl overflow-hidden">
+                    <video 
+                      className="w-full h-auto" 
+                      controls 
+                      preload="metadata"
+                      poster="/logo333.png"
+                    >
+                      <source src="/explore page.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 </div>
               </div>
