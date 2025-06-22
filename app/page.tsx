@@ -3,10 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import TokenPrice from "@/components/TokenPrice";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Home() {
   const [copySuccess, setCopySuccess] = useState(false);
+  const [playingVideos, setPlayingVideos] = useState<{ [key: string]: boolean }>({});
+  
+  // Video refs
+  const buyVideoRef = useRef<HTMLVideoElement>(null);
+  const createVideoRef = useRef<HTMLVideoElement>(null);
+  const exploreVideoRef = useRef<HTMLVideoElement>(null);
 
   // Copy to clipboard function
   const copyToClipboard = (text: string) => {
@@ -16,6 +22,23 @@ export default function Home() {
     }).catch(err => {
       console.error('Failed to copy: ', err);
     });
+  };
+
+  // Play video function
+  const playVideo = (videoKey: string, videoRef: React.RefObject<HTMLVideoElement | null>) => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlayingVideos(prev => ({ ...prev, [videoKey]: true }));
+    }
+  };
+
+  // Handle video play/pause events
+  const handleVideoPlay = (videoKey: string) => {
+    setPlayingVideos(prev => ({ ...prev, [videoKey]: true }));
+  };
+
+  const handleVideoPause = (videoKey: string) => {
+    setPlayingVideos(prev => ({ ...prev, [videoKey]: false }));
   };
 
   const contractAddress = "31TxE8kyhUJfq8JPeJNTdVPZeibQrcNnDbkvnigVpump";
@@ -281,8 +304,13 @@ export default function Home() {
                   
                   <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
                     {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center shadow-lg">
+                    <div 
+                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
+                        playingVideos.buy ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
+                      }`}
+                      onClick={() => playVideo('buy', buyVideoRef)}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                         <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -294,6 +322,10 @@ export default function Home() {
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
+                      ref={buyVideoRef}
+                      onPlay={() => handleVideoPlay('buy')}
+                      onPause={() => handleVideoPause('buy')}
+                      onEnded={() => handleVideoPause('buy')}
                     >
                       <source src="/buy_sell_page.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
@@ -328,8 +360,13 @@ export default function Home() {
                   
                   <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
                     {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
+                    <div 
+                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
+                        playingVideos.create ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
+                      }`}
+                      onClick={() => playVideo('create', createVideoRef)}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                         <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -341,6 +378,10 @@ export default function Home() {
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
+                      ref={createVideoRef}
+                      onPlay={() => handleVideoPlay('create')}
+                      onPause={() => handleVideoPause('create')}
+                      onEnded={() => handleVideoPause('create')}
                     >
                       <source src="/token_create.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
@@ -375,8 +416,13 @@ export default function Home() {
                   
                   <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
                     {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-100 group-hover/video:opacity-0 transition-opacity duration-300 z-10">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                    <div 
+                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
+                        playingVideos.explore ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
+                      }`}
+                      onClick={() => playVideo('explore', exploreVideoRef)}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                         <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -388,6 +434,10 @@ export default function Home() {
                       controls 
                       preload="metadata"
                       poster="/logo333.png"
+                      ref={exploreVideoRef}
+                      onPlay={() => handleVideoPlay('explore')}
+                      onPause={() => handleVideoPause('explore')}
+                      onEnded={() => handleVideoPause('explore')}
                     >
                       <source src="/explore page.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
