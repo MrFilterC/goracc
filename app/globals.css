@@ -321,15 +321,17 @@ html {
 }
 
 .video-modal-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
   color: white;
-  padding: 30px 20px 20px;
+  padding: 20px 20px 15px;
   font-size: 1.25rem;
   font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #FF6B35 0%, #1E3A5F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Animation */
@@ -380,7 +382,7 @@ html {
   
   .video-modal-title {
     font-size: 1rem;
-    padding: 20px 15px 15px;
+    padding: 15px 15px 12px;
   }
 }
 
@@ -409,7 +411,7 @@ html {
   
   .video-modal-title {
     font-size: 0.9rem;
-    padding: 15px 15px 20px;
+    padding: 12px 15px 10px;
   }
   
   .video-modal video {
@@ -425,7 +427,7 @@ html {
   }
   
   .video-modal-title {
-    padding: 15px 15px 10px;
+    padding: 12px 15px 8px;
     font-size: 0.9rem;
   }
 }

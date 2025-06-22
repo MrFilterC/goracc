@@ -158,68 +158,69 @@ export default function Home() {
             </svg>
           </button>
           
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1 sm:gap-4">
           <TokenPrice />
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
             <Link 
               href="https://x.com/GorbaganaAcc"
               target="_blank"
               rel="noopener noreferrer"
-                className="p-1.5 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25"
+              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25"
               title="@GorbaganaAcc"
             >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </Link>
               
-              <Link 
-                href="https://t.me/gor_acc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
-                title="Telegram Channel"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                </svg>
-              </Link>
-              
             <Link 
-                href="https://x.com/i/communities/1936538249490481482"
+              href="https://t.me/gor_acc"
               target="_blank"
               rel="noopener noreferrer"
-                className="relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-all duration-300 font-semibold transform hover:scale-105"
+              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
+              title="Telegram Channel"
+            >
+              <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </Link>
+              
+            <Link 
+              href="https://x.com/i/communities/1936538249490481482"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-2 sm:px-4 py-1 sm:py-2 rounded-lg transition-all duration-300 font-semibold transform hover:scale-105"
               title="X Community"
             >
-                {/* Animated gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-blue-600 rounded-lg opacity-100 animate-gradient-x"></div>
-                
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-blue-600 rounded-lg blur-lg opacity-50 animate-pulse"></div>
-                
-                {/* Button content */}
-                <div className="relative flex items-center gap-2 text-white text-sm sm:text-base">
-                  <svg className="w-4 h-4 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-              <span>Community</span>
-                </div>
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-blue-600 rounded-lg opacity-100 animate-gradient-x"></div>
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-blue-600 rounded-lg blur-lg opacity-50 animate-pulse"></div>
+              
+              {/* Button content */}
+              <div className="relative flex items-center gap-1 sm:gap-2 text-white text-xs sm:text-base">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span className="hidden xs:inline sm:inline">Community</span>
+                <span className="xs:hidden sm:hidden">Comm</span>
+              </div>
             </Link>
               
             <Link 
               href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
               target="_blank"
               rel="noopener noreferrer"
-                className="p-1.5 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
+              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
               title="View on DexScreener"
             >
               <Image
-                  src="/beyaz.webp"
+                src="/beyaz.webp"
                 alt="DexScreener"
-                width={20}
-                height={20}
-                className="w-5 h-5"
+                width={16}
+                height={16}
+                className="w-4 h-4 sm:w-5 sm:h-5"
               />
             </Link>
           </div>
@@ -718,6 +719,9 @@ export default function Home() {
             tabIndex={-1}
           >
             <div className="video-modal-content">
+              <div className="video-modal-title">
+                {modalVideo.title}
+              </div>
               <button
                 onClick={closeVideoModal}
                 className="video-modal-close"
@@ -737,9 +741,6 @@ export default function Home() {
                 onEnded={closeVideoModal}
                 style={{ maxHeight: '70vh' }}
               />
-              <div className="video-modal-title">
-                {modalVideo.title}
-              </div>
             </div>
           </div>
         )}
