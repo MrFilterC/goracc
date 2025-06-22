@@ -277,6 +277,108 @@ export default function Home() {
           </div>
         </section>
 
+        {/* What is Gorbagana Chain Section */}
+        <section className="relative z-10 py-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold gradient-text text-center mb-12">What is Gorbagana Chain?</h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              {/* Info Card */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <div className="gradient-card p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold gradient-text">The Grouch Fork</h3>
+                  </div>
+                  
+                  <div className="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                      Gorbagana Chain emerged as a community-driven fork with a unique vision: 
+                      combining the technical excellence of modern blockchain infrastructure 
+                      with the cultural power of meme-driven communities.
+                    </p>
+                    <p>
+                      Unlike traditional blockchain networks, Gorbagana Chain embraces the 
+                      chaotic energy that drives true innovation in the crypto space.
+                    </p>
+                    <p>
+                      With <span className="text-orange-400 font-semibold">$GOR</span> as the native token 
+                      and <span className="text-green-400 font-semibold">oscar the grouch.png</span> as 
+                      the iconic mascot, this chain represents a new paradigm in decentralized finance.
+                    </p>
+                  </div>
+
+                  {/* Website Link */}
+                  <div className="mt-8 p-4 bg-gray-800/30 rounded-xl border border-gray-600/30">
+                    <p className="text-xs text-gray-400 mb-2">Official Website</p>
+                    <Link 
+                      href="https://gorbaganachain.xyz/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 transition-colors font-mono text-sm break-all"
+                    >
+                      gorbaganachain.xyz →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tweet Card - lex_node */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <div className="gradient-card p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="font-semibold text-white">lex_node</span>
+                        <span className="text-gray-400 text-sm">@lex_node</span>
+                        <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                          <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="text-gray-300 text-sm leading-relaxed mb-4">
+                        <p className="mb-3">
+                          two forks:
+                        </p>
+                        <p className="mb-2">
+                          one is called <span className="text-purple-400 font-semibold">Solana</span>, has the ticker <span className="text-purple-400 font-mono">SOL</span>, and has the Solana logos
+                        </p>
+                        <p className="mb-3">
+                          one is called <span className="text-green-400 font-semibold">Gorbagana</span>, has the ticker <span className="text-green-400 font-mono">GOR</span> and has <span className="text-green-400">oscar the grouch.png</span> as a logo
+                        </p>
+                        <p className="text-orange-400 font-semibold">
+                          which is going to be more valuable? 🤔
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between text-gray-500 text-sm border-t border-gray-600/30 pt-3">
+                        <span>2:15 PM · Dec 19, 2024</span>
+                        <Link 
+                          href="https://x.com/lex_node/status/1935469530626601081"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          View on X →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Beta Screenshots Section */}
         <section className="relative z-10 py-16 px-6">
           <div className="max-w-6xl mx-auto">
