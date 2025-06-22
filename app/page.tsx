@@ -142,12 +142,12 @@ export default function Home() {
 
                 {/* Title */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="gradient-text">Gorbagana Acceleration</span>
+                  <span className="gradient-text">gormeme.fun</span>
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12">
-                  The ultimate utility is coming to Gorbagana chain
+                  Revolutionary gaming experience is being built, powered by gor/acc team
                 </p>
 
                 {/* Status Badge */}
@@ -159,8 +159,44 @@ export default function Home() {
                 {/* Mystery text */}
                 <div className="space-y-4 mb-12">
                   <p className="text-lg text-gray-400 pulse-glow">
-                    Something revolutionary is building...
+                    The future of meme gaming is in development...
                   </p>
+                </div>
+
+                {/* Tweet Embed */}
+                <div className="mt-8 max-w-xl mx-auto">
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <div className="gradient-card p-6">
+                      <div className="flex items-start gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-semibold text-white">CryptoSamet</span>
+                            <span className="text-gray-400 text-sm">@CryptoSamettt</span>
+                          </div>
+                          <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                            🚀 Exciting news in the crypto space! The gor/acc team is building something revolutionary. 
+                            Can't wait to see what they're cooking up! #Crypto #Innovation #Building
+                          </p>
+                          <div className="flex items-center justify-between text-gray-500 text-sm">
+                            <span>12:34 PM · Dec 22, 2024</span>
+                            <Link 
+                              href="https://x.com/CryptoSamettt/status/1936878341211971889"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-400 hover:text-blue-300 transition-colors"
+                            >
+                              View on X →
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
