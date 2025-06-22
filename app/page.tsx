@@ -129,21 +129,24 @@ export default function Home() {
           <nav className="hidden lg:flex items-center gap-6">
             <a 
               href="#live-updates" 
-              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+              className="relative text-gray-300 hover:text-orange-400 transition-all duration-300 text-sm font-bold tracking-wide uppercase hover:scale-105 group"
             >
-              Live Updates
+              <span className="relative z-10">Live Updates</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
             </a>
             <a 
               href="#beta-screenshots" 
-              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+              className="relative text-gray-300 hover:text-orange-400 transition-all duration-300 text-sm font-bold tracking-wide uppercase hover:scale-105 group"
             >
-              Beta Screenshots
+              <span className="relative z-10">Beta Videos</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
             </a>
             <a 
               href="#what-is-gorbagana" 
-              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+              className="relative text-gray-300 hover:text-orange-400 transition-all duration-300 text-sm font-bold tracking-wide uppercase hover:scale-105 group"
             >
-              What is Gorbagana?
+              <span className="relative z-10">What is Gorbagana?</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
             </a>
           </nav>
 
@@ -158,69 +161,146 @@ export default function Home() {
             </svg>
           </button>
           
-        <div className="flex items-center gap-1 sm:gap-4">
-          <TokenPrice />
-          <div className="flex items-center gap-1 sm:gap-3">
+        {/* Mobile-optimized header right section */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* TokenPrice - mobile optimized */}
+          <div className="hidden sm:block">
+            <TokenPrice />
+          </div>
+          
+          {/* Mobile: First group - X, TG, DEX icons only */}
+          <div className="flex sm:hidden items-center gap-1.5">
+            {/* X/Twitter */}
             <Link 
               href="https://x.com/GorbaganaAcc"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25"
+              className="p-2 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-orange-500/20"
               title="@GorbaganaAcc"
             >
-              <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </Link>
               
+            {/* Telegram */}
             <Link 
               href="https://t.me/gor_acc"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
-              title="Telegram Channel"
+              className="p-2 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
+              title="Telegram"
             >
-              <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
               </svg>
             </Link>
               
-            <Link 
-              href="https://x.com/i/communities/1936538249490481482"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative px-2 sm:px-4 py-1 sm:py-2 rounded-lg transition-all duration-300 font-semibold transform hover:scale-105"
-              title="X Community"
-            >
-              {/* Animated gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-blue-600 rounded-lg opacity-100 animate-gradient-x"></div>
-              
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-blue-600 rounded-lg blur-lg opacity-50 animate-pulse"></div>
-              
-              {/* Button content */}
-              <div className="relative flex items-center gap-1 sm:gap-2 text-white text-xs sm:text-base">
-                <svg className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span className="hidden xs:inline sm:inline">Community</span>
-                <span className="xs:hidden sm:hidden">Comm</span>
-              </div>
-            </Link>
-              
+            {/* DexScreener */}
             <Link 
               href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
-              title="View on DexScreener"
+              className="p-2 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
+              title="DexScreener"
             >
               <Image
                 src="/beyaz.webp"
                 alt="DexScreener"
                 width={16}
                 height={16}
-                className="w-4 h-4 sm:w-5 sm:h-5"
+                className="w-4 h-4"
+              />
+            </Link>
+          </div>
+          
+          {/* Mobile: Second group - Price and X Community */}
+          <div className="flex sm:hidden items-center gap-2">
+            <TokenPrice />
+            
+            {/* X Community */}
+            <Link 
+              href="https://x.com/i/communities/1936538249490481482"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-2 py-1.5 rounded-lg transition-all duration-300 font-medium transform hover:scale-105"
+              title="X Community"
+            >
+              {/* Simplified gradient background for mobile */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg opacity-90"></div>
+              
+              {/* Mobile content */}
+              <div className="relative flex items-center gap-1 text-white">
+                <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span className="text-xs font-semibold">Comm</span>
+              </div>
+            </Link>
+          </div>
+          
+          {/* Desktop: All items in one row */}
+          <div className="hidden sm:flex items-center gap-2">
+            {/* X/Twitter */}
+            <Link 
+              href="https://x.com/GorbaganaAcc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-orange-500/20"
+              title="@GorbaganaAcc"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </Link>
+              
+            {/* Telegram */}
+            <Link 
+              href="https://t.me/gor_acc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
+              title="Telegram"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </Link>
+              
+            {/* X Community */}
+            <Link 
+              href="https://x.com/i/communities/1936538249490481482"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-3 py-2 rounded-lg transition-all duration-300 font-medium transform hover:scale-105"
+              title="X Community"
+            >
+              {/* Simplified gradient background for mobile */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg opacity-90"></div>
+              
+              {/* Mobile content */}
+              <div className="relative flex items-center gap-1 text-white">
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span className="text-sm font-semibold">Comm</span>
+              </div>
+            </Link>
+              
+            {/* DexScreener */}
+            <Link 
+              href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg gradient-card hover:scale-105 transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
+              title="DexScreener"
+            >
+              <Image
+                src="/beyaz.webp"
+                alt="DexScreener"
+                width={16}
+                height={16}
+                className="w-5 h-5"
               />
             </Link>
           </div>
@@ -246,21 +326,21 @@ export default function Home() {
                 <a 
                   href="#live-updates" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                  className="block text-gray-300 hover:text-orange-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-800/50 font-bold tracking-wide uppercase text-sm hover:scale-105 transform"
                 >
                   Live Updates
                 </a>
                 <a 
                   href="#beta-screenshots" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                  className="block text-gray-300 hover:text-orange-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-800/50 font-bold tracking-wide uppercase text-sm hover:scale-105 transform"
                 >
-                  Beta Screenshots
+                  Beta Videos
                 </a>
                 <a 
                   href="#what-is-gorbagana" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                  className="block text-gray-300 hover:text-orange-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-800/50 font-bold tracking-wide uppercase text-sm hover:scale-105 transform"
                 >
                   What is Gorbagana?
                 </a>
@@ -403,10 +483,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Beta Screenshots Section */}
+                  {/* Beta Videos Section */}
         <section id="beta-screenshots" className="section-padding relative z-10 py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Beta Screenshots</h2>
+            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Beta Videos</h2>
             
             <div className="grid-responsive grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {/* Buy/Sell Demo */}

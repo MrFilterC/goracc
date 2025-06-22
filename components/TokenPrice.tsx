@@ -79,21 +79,14 @@ export default function TokenPrice() {
   }
 
   return (
-    <div className={`relative flex items-center gap-1 sm:gap-2 text-xs sm:text-sm gradient-card px-3 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 ${flashClass}`}>
-      {/* Glow effect for active state */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-full blur-md opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-      
-      <div className="relative flex items-center gap-1 sm:gap-2">
-      <span className="text-gray-400 hidden sm:inline">MC:</span>
-        <span className="font-mono font-semibold gradient-text">{formatMarketCap(marketCap)}</span>
-      {priceChange !== null && !isNaN(priceChange) && (
-          <div className="flex items-center gap-1">
-            <div className={`w-1.5 h-1.5 rounded-full ${priceChange >= 0 ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
-            <span className={`text-xs font-medium ${priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-          {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(1)}%
-        </span>
-          </div>
-      )}
+    <div className={`relative flex items-center gap-1 text-xs bg-gray-800/30 px-2 py-1.5 rounded-lg transition-all duration-300 ${flashClass}`}>
+      <div className="flex items-center gap-1">
+        <span className="font-mono font-medium text-gray-300">{formatMarketCap(marketCap)}</span>
+        {priceChange !== null && !isNaN(priceChange) && (
+          <span className={`text-xs font-medium ${priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(1)}%
+          </span>
+        )}
       </div>
     </div>
   );
