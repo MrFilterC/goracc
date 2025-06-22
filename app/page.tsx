@@ -163,10 +163,6 @@ export default function Home() {
           
         {/* Mobile-optimized header right section */}
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* TokenPrice - mobile optimized */}
-          <div className="hidden sm:block">
-            <TokenPrice />
-          </div>
           
           {/* Mobile: First group - X, TG, DEX icons only */}
           <div className="flex sm:hidden items-center gap-1.5">
@@ -234,14 +230,37 @@ export default function Home() {
                 <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
-                <span className="text-xs font-semibold">Comm</span>
+                <span className="text-xs font-semibold">CT</span>
               </div>
             </Link>
           </div>
           
-          {/* Desktop: All items in one row */}
+          {/* Desktop: Reordered - Price, X CT, X, TG, DEX */}
           <div className="hidden sm:flex items-center gap-2">
-            {/* X/Twitter */}
+            {/* TokenPrice - First */}
+            <TokenPrice />
+            
+            {/* X Community - Second */}
+            <Link 
+              href="https://x.com/i/communities/1936538249490481482"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-3 py-2 rounded-lg transition-all duration-300 font-medium transform hover:scale-105"
+              title="X Community"
+            >
+              {/* Simplified gradient background for mobile */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg opacity-90"></div>
+              
+              {/* Desktop content */}
+              <div className="relative flex items-center gap-1 text-white">
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span className="text-sm font-semibold">CT</span>
+              </div>
+            </Link>
+            
+            {/* X/Twitter - Third */}
             <Link 
               href="https://x.com/GorbaganaAcc"
               target="_blank"
@@ -254,7 +273,7 @@ export default function Home() {
               </svg>
             </Link>
               
-            {/* Telegram */}
+            {/* Telegram - Fourth */}
             <Link 
               href="https://t.me/gor_acc"
               target="_blank"
@@ -267,27 +286,7 @@ export default function Home() {
               </svg>
             </Link>
               
-            {/* X Community */}
-            <Link 
-              href="https://x.com/i/communities/1936538249490481482"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative px-3 py-2 rounded-lg transition-all duration-300 font-medium transform hover:scale-105"
-              title="X Community"
-            >
-              {/* Simplified gradient background for mobile */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg opacity-90"></div>
-              
-              {/* Mobile content */}
-              <div className="relative flex items-center gap-1 text-white">
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span className="text-sm font-semibold">Comm</span>
-              </div>
-            </Link>
-              
-            {/* DexScreener */}
+            {/* DexScreener - Fifth */}
             <Link 
               href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
               target="_blank"
