@@ -14,6 +14,18 @@ export default function Home() {
   const createVideoRef = useRef<HTMLVideoElement>(null);
   const exploreVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Video control states
+  const [playingStates, setPlayingStates] = useState<{ [key: number]: boolean }>({});
+  const [videoDurations, setVideoDurations] = useState<{ [key: number]: number }>({});
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  
+  // Mobile menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Video modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalVideo, setModalVideo] = useState<{src: string, title: string} | null>(null);
+
   // Copy to clipboard function
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -43,49 +55,123 @@ export default function Home() {
 
   const contractAddress = "31TxE8kyhUJfq8JPeJNTdVPZeibQrcNnDbkvnigVpump";
 
+  // Toggle video play/pause
+  const toggleVideo = (index: number) => {
+    const video = videoRefs.current[index];
+    if (!video) return;
+
+    if (playingStates[index]) {
+      video.pause();
+      setPlayingStates(prev => ({ ...prev, [index]: false }));
+    } else {
+      video.play();
+      setPlayingStates(prev => ({ ...prev, [index]: true }));
+    }
+  };
+
+  // Format duration
+  const formatDuration = (duration: number): string => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  // Open video modal
+  const openVideoModal = (src: string, title: string) => {
+    setModalVideo({ src, title });
+    setModalOpen(true);
+    // Prevent body scroll on mobile
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  };
+
+  // Close video modal
+  const closeVideoModal = () => {
+    setModalOpen(false);
+    setModalVideo(null);
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+    document.body.style.position = 'unset';
+    document.body.style.width = 'unset';
+  };
+
   return (
     <>
       {/* Copy Success Toast */}
       {copySuccess && (
         <div className="fixed top-4 right-4 z-50 bg-green-500/20 border border-green-500/50 text-green-400 px-4 py-2 rounded-lg backdrop-blur-sm">
           ✓ Copied to clipboard!
-        </div>
+      </div>
       )}
 
       {/* Background Particles */}
       <div className="bg-particles"></div>
-      
+
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-900 relative">
-        {/* Header */}
-        <header className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 p-4 sm:p-6 md:p-10">
-          <div className="flex items-center gap-2 sm:gap-3">
+      {/* Header */}
+      <header className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 p-4 sm:p-6 md:p-10">
+        <div className="flex items-center gap-2 sm:gap-3">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-blue-500/30 rounded-full blur-md animate-pulse"></div>
-              <Image
+          <Image
                 src="/logo333.png"
-                alt="gor/acc logo"
-                width={40}
-                height={40}
+            alt="gor/acc logo"
+            width={40}
+            height={40}
                 className="relative rounded-full sm:w-12 sm:h-12"
-              />
+          />
             </div>
             <span className="text-lg sm:text-xl font-bold gradient-text">gor/acc</span>
-          </div>
+        </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-6">
+            <a 
+              href="#live-updates" 
+              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+            >
+              Live Updates
+            </a>
+            <a 
+              href="#beta-screenshots" 
+              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+            >
+              Beta Screenshots
+            </a>
+            <a 
+              href="#what-is-gorbagana" 
+              className="text-gray-300 hover:text-orange-400 transition-colors text-sm font-medium"
+            >
+              What is Gorbagana?
+            </a>
+          </nav>
+
+          {/* Mobile Navigation Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg gradient-card"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
           
-          <div className="flex items-center gap-2 sm:gap-4">
-            <TokenPrice />
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Link 
-                href="https://x.com/GorbaganaAcc"
-                target="_blank"
-                rel="noopener noreferrer"
+        <div className="flex items-center gap-2 sm:gap-4">
+          <TokenPrice />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link 
+              href="https://x.com/GorbaganaAcc"
+              target="_blank"
+              rel="noopener noreferrer"
                 className="p-1.5 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25"
-                title="@GorbaganaAcc"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </Link>
+              title="@GorbaganaAcc"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </Link>
               
               <Link 
                 href="https://t.me/gor_acc"
@@ -99,13 +185,13 @@ export default function Home() {
                 </svg>
               </Link>
               
-              <Link 
+            <Link 
                 href="https://x.com/i/communities/1936538249490481482"
-                target="_blank"
-                rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
                 className="relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-all duration-300 font-semibold transform hover:scale-105"
-                title="X Community"
-              >
+              title="X Community"
+            >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-blue-600 rounded-lg opacity-100 animate-gradient-x"></div>
                 
@@ -115,33 +201,75 @@ export default function Home() {
                 {/* Button content */}
                 <div className="relative flex items-center gap-2 text-white text-sm sm:text-base">
                   <svg className="w-4 h-4 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                  <span>Community</span>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span>Community</span>
                 </div>
-              </Link>
+            </Link>
               
-              <Link 
-                href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
-                target="_blank"
-                rel="noopener noreferrer"
+            <Link 
+              href="https://dexscreener.com/solana/7g3zkutx3w4cqbbx3gwbhe1dkoak7kp4kfcvxznfadu4"
+              target="_blank"
+              rel="noopener noreferrer"
                 className="p-1.5 sm:p-2 rounded-full gradient-card hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
-                title="View on DexScreener"
-              >
-                <Image
+              title="View on DexScreener"
+            >
+              <Image
                   src="/beyaz.webp"
-                  alt="DexScreener"
-                  width={20}
-                  height={20}
-                  className="w-5 h-5"
-                />
-              </Link>
+                alt="DexScreener"
+                width={20}
+                height={20}
+                className="w-5 h-5"
+              />
+            </Link>
+          </div>
+        </div>
+      </header>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-lg font-bold gradient-text">Menu</span>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 rounded-lg gradient-card"
+                >
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <nav className="space-y-3">
+                <a 
+                  href="#live-updates" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                >
+                  Live Updates
+                </a>
+                <a 
+                  href="#beta-screenshots" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                >
+                  Beta Screenshots
+                </a>
+                <a 
+                  href="#what-is-gorbagana" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-gray-300 hover:text-orange-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-800/50"
+                >
+                  What is Gorbagana?
+                </a>
+              </nav>
             </div>
           </div>
-        </header>
+        )}
 
         {/* Main Content */}
-        <section className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
+      <section className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
           <div className="max-w-7xl mx-auto">
             {/* Hero Card */}
             <div className="relative overflow-hidden rounded-3xl">
@@ -150,23 +278,23 @@ export default function Home() {
               
               {/* Main Content */}
               <div className="relative gradient-card p-8 md:p-12">
-                {/* Logo */}
+          {/* Logo */}
                 <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-8">
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-blue-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                  <Image
+            <Image
                     src="/logo333.png"
-                    alt="gor/acc logo"
-                    width={160}
-                    height={160}
-                    className="relative rounded-full floating"
-                    priority
-                  />
-                </div>
+              alt="gor/acc logo"
+              width={160}
+              height={160}
+              className="relative rounded-full floating"
+              priority
+            />
+          </div>
 
-                {/* Title */}
+          {/* Title */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="gradient-text">Gorbagana Acceleration</span>
-                </h1>
+            <span className="gradient-text">Gorbagana Acceleration</span>
+          </h1>
 
                 {/* Main subtitle */}
                 <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12">
@@ -179,7 +307,7 @@ export default function Home() {
                   <span className="text-xs font-semibold text-green-400 uppercase tracking-wider">Building</span>
                 </div>
 
-                {/* Mystery text */}
+          {/* Mystery text */}
                 <div className="space-y-4 mb-12">
                   <p className="text-lg text-gray-400 pulse-glow">
                     The future of Gorbagana ecosystem is in development...
@@ -221,55 +349,253 @@ export default function Home() {
         </section>
 
         {/* Live Updates Section */}
-        <section className="relative z-10 py-16 px-6">
+        <section id="live-updates" className="section-padding relative z-10 py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Live Updates</h2>
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <h2 className="text-3xl font-bold gradient-text">Live Updates</h2>
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 px-3 py-1 rounded-full">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                <span className="text-green-400 text-xs font-semibold uppercase tracking-wider">LIVE</span>
+              </div>
+            </div>
             
             {/* Tweet Card */}
             <div className="relative overflow-hidden rounded-2xl">
               <div className="gradient-card p-6">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
+                <div className="text-gray-300 text-sm leading-relaxed mb-4">
+                  <p className="mb-3">
+                    Alright guys, I think it's time to clear a few things up.
+                  </p>
+                  <p className="mb-3">
+                    I loved Gor/Acc as a meme, paid for the DEX listing out of my own pocket, and launched the X community myself — everything's been going great. Then we listened to the community feedback and decided to build real upgrades for Gor/Acc.
+                  </p>
+                  <p className="mb-3">
+                    No clickbait. No "coming soon." No scams, no bundles, no influencers, no paid shills. Just a solid project built together with the community.
+                  </p>
+                  <p className="mb-3">
+                    Leaving you some visuals — we'll answer your questions in the Twitter Space we're hosting Monday evening.
+                  </p>
+                  <p className="mb-3">
+                    The community is with us, and we're ready to take this to the next level.
+                  </p>
+                  <p className="text-orange-400 font-semibold">
+                    Join the $Gor/Acc army. 🫡
+                  </p>
+                </div>
+                <div className="flex items-center justify-between text-gray-500 text-sm border-t border-gray-600/30 pt-3">
+                  <span>12:34 PM · Jun 22, 2025</span>
+                  <Link 
+                    href="https://x.com/CryptoSamettt/status/1936878341211971889"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    View on X →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Beta Screenshots Section */}
+        <section id="beta-screenshots" className="section-padding relative z-10 py-12 sm:py-16 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Beta Screenshots</h2>
+            
+            <div className="grid-responsive grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {/* Buy/Sell Demo */}
+              <div className="relative overflow-hidden rounded-2xl group cursor-pointer">
+                <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[0] = el;
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={() => {
+                      if (videoRefs.current[0]) {
+                        setVideoDurations(prev => ({ ...prev, 0: videoRefs.current[0]?.duration || 0 }));
+                      }
+                    }}
+                    onPlay={() => setPlayingStates(prev => ({ ...prev, 0: true }))}
+                    onPause={() => setPlayingStates(prev => ({ ...prev, 0: false }))}
+                    onEnded={() => setPlayingStates(prev => ({ ...prev, 0: false }))}
+                  >
+                    <source src="/buy_sell_page.mp4" type="video/mp4" />
+                  </video>
+                  
+                  {/* Play button overlay */}
+                  <div 
+                    className={`absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 ${playingStates[0] ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover:opacity-80'}`}
+                    onClick={() => toggleVideo(0)}
+                  >
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200">
+                      <svg className="w-8 h-8 text-gray-900 ml-1" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="font-semibold text-white">CryptoSamet</span>
-                      <span className="text-gray-400 text-sm">@CryptoSamettt</span>
+                  
+                  {/* Duration badge */}
+                  <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded pointer-events-none">
+                    {videoDurations[0] ? formatDuration(videoDurations[0]) : '--:--'}
+                  </div>
+                  
+                  {/* Fullscreen button */}
+                  <button
+                    onClick={() => openVideoModal('/buy_sell_page.mp4', 'Buy/Sell Interface')}
+                    className="absolute bottom-3 right-3 w-8 h-8 sm:w-10 sm:h-10 bg-black/70 hover:bg-orange-500/80 text-white rounded flex items-center justify-center transition-colors duration-200"
+                    title="Open in modal"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </button>
+                </div>
+                
+                <div className="gradient-card mt-4 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 14l5-5 5 5z"/>
+                      </svg>
                     </div>
-                    <div className="text-gray-300 text-sm leading-relaxed mb-4">
-                      <p className="mb-3">
-                        Alright guys, I think it's time to clear a few things up.
-                      </p>
-                      <p className="mb-3">
-                        I loved Gor/Acc as a meme, paid for the DEX listing out of my own pocket, and launched the X community myself — everything's been going great. Then we listened to the community feedback and decided to build real upgrades for Gor/Acc.
-                      </p>
-                      <p className="mb-3">
-                        No clickbait. No "coming soon." No scams, no bundles, no influencers, no paid shills. Just a solid project built together with the community.
-                      </p>
-                      <p className="mb-3">
-                        Leaving you some visuals — we'll answer your questions in the Twitter Space we're hosting Monday evening.
-                      </p>
-                      <p className="mb-3">
-                        The community is with us, and we're ready to take this to the next level.
-                      </p>
-                      <p className="text-orange-400 font-semibold">
-                        Join the $Gor/Acc army. 🫡
-                      </p>
+                    <h3 className="font-bold text-white text-lg">Buy/Sell Interface</h3>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Token Creation Demo */}
+              <div className="relative overflow-hidden rounded-2xl group cursor-pointer">
+                <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[1] = el;
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={() => {
+                      if (videoRefs.current[1]) {
+                        setVideoDurations(prev => ({ ...prev, 1: videoRefs.current[1]?.duration || 0 }));
+                      }
+                    }}
+                    onPlay={() => setPlayingStates(prev => ({ ...prev, 1: true }))}
+                    onPause={() => setPlayingStates(prev => ({ ...prev, 1: false }))}
+                    onEnded={() => setPlayingStates(prev => ({ ...prev, 1: false }))}
+                  >
+                    <source src="/token_create.mp4" type="video/mp4" />
+                  </video>
+                  
+                  {/* Play button overlay */}
+                  <div 
+                    className={`absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 ${playingStates[1] ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover:opacity-80'}`}
+                    onClick={() => toggleVideo(1)}
+                  >
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200">
+                      <svg className="w-8 h-8 text-gray-900 ml-1" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
                     </div>
-                    <div className="flex items-center justify-between text-gray-500 text-sm border-t border-gray-600/30 pt-3">
-                      <span>12:34 PM · Jun 22, 2025</span>
-                      <Link 
-                        href="https://x.com/CryptoSamettt/status/1936878341211971889"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        View on X →
-                      </Link>
+                  </div>
+                  
+                  {/* Duration badge */}
+                  <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded pointer-events-none">
+                    {videoDurations[1] ? formatDuration(videoDurations[1]) : '--:--'}
+                  </div>
+                  
+                  {/* Fullscreen button */}
+                  <button
+                    onClick={() => openVideoModal('/token_create.mp4', 'Token Creation')}
+                    className="absolute bottom-3 right-3 w-8 h-8 sm:w-10 sm:h-10 bg-black/70 hover:bg-orange-500/80 text-white rounded flex items-center justify-center transition-colors duration-200"
+                    title="Open in modal"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </button>
+          </div>
+
+                <div className="gradient-card mt-4 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
                     </div>
+                    <h3 className="font-bold text-white text-lg">Token Creation</h3>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Explore Page Demo */}
+              <div className="relative overflow-hidden rounded-2xl group cursor-pointer">
+                <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[2] = el;
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={() => {
+                      if (videoRefs.current[2]) {
+                        setVideoDurations(prev => ({ ...prev, 2: videoRefs.current[2]?.duration || 0 }));
+                      }
+                    }}
+                    onPlay={() => setPlayingStates(prev => ({ ...prev, 2: true }))}
+                    onPause={() => setPlayingStates(prev => ({ ...prev, 2: false }))}
+                    onEnded={() => setPlayingStates(prev => ({ ...prev, 2: false }))}
+                  >
+                    <source src="/explore page.mp4" type="video/mp4" />
+                  </video>
+                  
+                  {/* Play button overlay */}
+                  <div 
+                    className={`absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300 ${playingStates[2] ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover:opacity-80'}`}
+                    onClick={() => toggleVideo(2)}
+                  >
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200">
+                      <svg className="w-8 h-8 text-gray-900 ml-1" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Duration badge */}
+                  <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded pointer-events-none">
+                    {videoDurations[2] ? formatDuration(videoDurations[2]) : '--:--'}
+                  </div>
+                  
+                  {/* Fullscreen button */}
+                  <button
+                    onClick={() => openVideoModal('/explore page.mp4', 'Explore Page')}
+                    className="absolute bottom-3 right-3 w-8 h-8 sm:w-10 sm:h-10 bg-black/70 hover:bg-orange-500/80 text-white rounded flex items-center justify-center transition-colors duration-200"
+                    title="Open in modal"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </button>
+                </div>
+                
+                <div className="gradient-card mt-4 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-white text-lg">Explore Page</h3>
                   </div>
                 </div>
               </div>
@@ -277,12 +603,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What is Gorbagana Chain Section */}
-        <section className="relative z-10 py-16 px-6">
-          <div className="max-w-5xl mx-auto">
+        {/* What is Gorbagana Chain Section - En son konuma alındı */}
+        <section id="what-is-gorbagana" className="section-padding relative z-10 py-12 sm:py-16 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold gradient-text text-center mb-12">What is Gorbagana Chain?</h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div className="grid-responsive grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
               {/* Info Card */}
               <div className="relative overflow-hidden rounded-2xl">
                 <div className="gradient-card p-8">
@@ -311,7 +637,7 @@ export default function Home() {
                       the iconic mascot, this chain represents a new paradigm in decentralized finance.
                     </p>
                   </div>
-
+                  
                   {/* Website Link */}
                   <div className="mt-8 p-4 bg-gray-800/30 rounded-xl border border-gray-600/30">
                     <p className="text-xs text-gray-400 mb-2">Official Website</p>
@@ -326,7 +652,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
+              
               {/* Tweet Card - lex_node */}
               <div className="relative overflow-hidden rounded-2xl">
                 <div className="gradient-card p-6">
@@ -373,202 +699,56 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Beta Screenshots Section */}
-        <section className="relative z-10 py-16 px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold gradient-text text-center mb-12">Beta Screenshots</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {/* Buy Sell Page */}
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300">
-                {/* Background Animation */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-semibold gradient-text">Buy Sell Page</h3>
-                  </div>
-                  
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                    Advanced trading interface with real-time price charts and instant swap functionality
-                  </p>
-                  
-                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
-                    {/* Play Button Overlay */}
-                    <div 
-                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
-                        playingVideos.buy ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
-                      }`}
-                      onClick={() => playVideo('buy', buyVideoRef)}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-blue-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
-                    
-                    <video 
-                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
-                      controls 
-                      preload="metadata"
-                      poster="/logo333.png"
-                      ref={buyVideoRef}
-                      onPlay={() => handleVideoPlay('buy')}
-                      onPause={() => handleVideoPause('buy')}
-                      onEnded={() => handleVideoPause('buy')}
-                    >
-                      <source src="/buy_sell_page.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    
-                    {/* Video Duration Badge */}
-                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
-                      0:15
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Token Create */}
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300">
-                {/* Background Animation */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-semibold gradient-text">Token Create</h3>
-                  </div>
-                  
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                    One-click token creation with automated liquidity pools and fair launch mechanisms
-                  </p>
-                  
-                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
-                    {/* Play Button Overlay */}
-                    <div 
-                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
-                        playingVideos.create ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
-                      }`}
-                      onClick={() => playVideo('create', createVideoRef)}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
-                    
-                    <video 
-                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
-                      controls 
-                      preload="metadata"
-                      poster="/logo333.png"
-                      ref={createVideoRef}
-                      onPlay={() => handleVideoPlay('create')}
-                      onPause={() => handleVideoPause('create')}
-                      onEnded={() => handleVideoPause('create')}
-                    >
-                      <source src="/token_create.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    
-                    {/* Video Duration Badge */}
-                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
-                      0:45
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Explore Page */}
-              <div className="relative overflow-hidden rounded-2xl group hover:scale-105 transition-all duration-300 lg:col-span-2 xl:col-span-1">
-                {/* Background Animation */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative gradient-card p-6 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-semibold gradient-text">Explore Page</h3>
-                  </div>
-                  
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                    Discover trending tokens, analytics dashboard and community-driven project listings
-                  </p>
-                  
-                  <div className="relative rounded-xl overflow-hidden bg-gray-900/50 group/video">
-                    {/* Play Button Overlay */}
-                    <div 
-                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 z-10 cursor-pointer ${
-                        playingVideos.explore ? 'opacity-0 pointer-events-none' : 'opacity-100 group-hover/video:opacity-0'
-                      }`}
-                      onClick={() => playVideo('explore', exploreVideoRef)}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
-                    
-                    <video 
-                      className="w-full h-auto transition-all duration-300 group-hover/video:scale-105" 
-                      controls 
-                      preload="metadata"
-                      poster="/logo333.png"
-                      ref={exploreVideoRef}
-                      onPlay={() => handleVideoPlay('explore')}
-                      onPause={() => handleVideoPause('explore')}
-                      onEnded={() => handleVideoPause('explore')}
-                    >
-                      <source src="/explore page.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    
-                    {/* Video Duration Badge */}
-                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
-                      0:30
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Coming Soon Badge */}
-            <div className="text-center mt-12">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/20 to-blue-500/20 backdrop-blur-sm px-6 py-3 rounded-full border border-orange-500/30">
-                <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-blue-400 rounded-full animate-pulse" />
-                <span className="text-sm font-semibold text-gray-300 uppercase tracking-wider">More Features Coming Soon</span>
+        {/* Video Modal */}
+        {modalOpen && modalVideo && (
+          <div 
+            className="video-modal entering"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeVideoModal();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') closeVideoModal();
+            }}
+            tabIndex={-1}
+          >
+            <div className="video-modal-content">
+              <button
+                onClick={closeVideoModal}
+                className="video-modal-close"
+                aria-label="Close video modal"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <video
+                src={modalVideo.src}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="w-full h-auto"
+                onEnded={closeVideoModal}
+                style={{ maxHeight: '70vh' }}
+              />
+              <div className="video-modal-title">
+                {modalVideo.title}
               </div>
             </div>
           </div>
-        </section>
+        )}
 
-        {/* Footer */}
-        <footer className="relative z-10 text-center p-6 text-sm text-gray-500">
-          <p>© 2025 gor/acc • Building on Gorbagana</p>
-        </footer>
-      </main>
+      {/* Footer */}
+      <footer className="relative z-10 text-center p-6 text-sm text-gray-500">
+        <p>© 2025 gor/acc • Building on Gorbagana</p>
+      </footer>
+    </main>
     </>
   );
 }
