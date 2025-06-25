@@ -109,6 +109,29 @@ export default function Home() {
       <div className="bg-particles"></div>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-900 relative">
+      {/* Beta Announcement Banner */}
+      <div className="relative z-20 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-b border-green-500/30">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-green-400 text-xs font-semibold uppercase tracking-wider">NEW</span>
+            </div>
+            <p className="text-sm sm:text-base text-gray-200 font-medium">
+              gormeme.fun beta is live! 
+              <Link 
+                href="https://www.gormeme.fun/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 text-green-400 hover:text-green-300 underline transition-colors"
+              >
+                Visit now →
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 p-4 sm:p-6 md:p-10">
         <div className="flex items-center gap-2 sm:gap-3">
@@ -716,8 +739,8 @@ export default function Home() {
                       and <span className="text-green-400 font-semibold">oscar the grouch.png</span> as 
                       the iconic mascot, this chain represents a new paradigm in decentralized finance.
                     </p>
-                  </div>
-                  
+          </div>
+
                   {/* Website Link */}
                   <div className="mt-8 p-4 bg-gray-800/30 rounded-xl border border-gray-600/30">
                     <p className="text-xs text-gray-400 mb-2">Official Website</p>
