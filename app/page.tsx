@@ -399,6 +399,31 @@ export default function Home() {
             <span className="gradient-text">Gorbagana Acceleration</span>
           </h1>
 
+                {/* Beta Live Announcement */}
+                <div className="relative z-20 bg-gradient-to-r from-green-500/30 to-emerald-500/30 border border-green-500/50 rounded-2xl p-6 sm:p-8 mb-8 mx-4 sm:mx-0">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-green-400 text-sm font-semibold uppercase tracking-wider">Beta is Live!</span>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                    </div>
+                    <p className="text-lg sm:text-xl text-gray-200 font-medium text-center">
+                      gormeme.fun beta is now available for testing
+                    </p>
+                    <Link 
+                      href="https://www.gormeme.fun/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Launch App
+                    </Link>
+                  </div>
+                </div>
+
                 {/* Main subtitle */}
                 <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12">
                   First official launchpad of Gorbagana Chain is being built
