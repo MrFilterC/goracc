@@ -151,6 +151,13 @@ export default function Home() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
             <a 
+              href="#roadmap" 
+              className="relative text-gray-300 hover:text-orange-400 transition-all duration-300 text-sm font-bold tracking-wide uppercase hover:scale-105 group"
+            >
+              <span className="relative z-10">Roadmap</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            </a>
+            <a 
               href="#live-updates" 
               className="relative text-gray-300 hover:text-orange-400 transition-all duration-300 text-sm font-bold tracking-wide uppercase hover:scale-105 group"
             >
@@ -346,6 +353,13 @@ export default function Home() {
               </div>
               <nav className="space-y-3">
                 <a 
+                  href="#roadmap" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-gray-300 hover:text-orange-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-800/50 font-bold tracking-wide uppercase text-sm hover:scale-105 transform"
+                >
+                  Roadmap
+                </a>
+                <a 
                   href="#live-updates" 
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-gray-300 hover:text-orange-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-800/50 font-bold tracking-wide uppercase text-sm hover:scale-105 transform"
@@ -470,6 +484,154 @@ export default function Home() {
                       <p className="text-gray-300">Solana <span className="text-gray-500">(for now)</span></p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Roadmap Section */}
+        <section id="roadmap" className="section-padding relative z-10 py-12 sm:py-16 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold gradient-text mb-2">gor/acc Roadmap</h2>
+              <p className="text-gray-400">Building the future of meme tokens</p>
+            </div>
+            
+            <div className="relative">
+              {/* Progress Bar Background */}
+              <div className="absolute top-[30px] left-0 right-0 h-1 bg-gray-700/50"></div>
+              {/* Progress Bar Fill */}
+              <div className="absolute top-[30px] left-0 h-1 bg-gradient-to-r from-orange-500 to-yellow-500" style={{ width: '57%' }}></div>
+              
+              <div className="relative grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2">
+                {/* Step 1 - Completed */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-orange-400">COMPLETED</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-300 mt-1">gor/acc meme token launch</p>
+                  </div>
+                </div>
+
+                {/* Step 2 - Completed */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-orange-400">COMPLETED</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-300 mt-1">gor/acc CTO</p>
+                  </div>
+                </div>
+
+                {/* Step 3 - Completed */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-orange-400">COMPLETED</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-300 mt-1">Dev team assembly</p>
+                  </div>
+                </div>
+
+                {/* Step 4 - Current (Animated) */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full animate-pulse"></div>
+                    <div className="relative w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-yellow-400 animate-pulse">CURRENT</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-300 mt-1">gormeme.fun devnet launch</p>
+                  </div>
+                </div>
+
+                {/* Step 5 - Upcoming */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gray-700/50 border-2 border-gray-600 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-gray-500">UPCOMING</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-1">gormeme.fun Solana mainnet</p>
+                  </div>
+                </div>
+
+                {/* Step 6 - Upcoming */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gray-700/50 border-2 border-gray-600 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-gray-500">UPCOMING</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-1">gor chain testnet launch</p>
+                  </div>
+                </div>
+
+                {/* Step 7 - Final */}
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] bg-gray-700/50 border-2 border-gray-600 rounded-full flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-full"></div>
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <p className="text-[10px] sm:text-xs font-bold text-gray-500">FINAL</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-1">gormeme.fun mainnet launch</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Progress Info */}
+            <div className="mt-8 text-center space-y-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full">
+                <svg className="w-4 h-4 text-yellow-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span className="text-sm font-medium text-yellow-400">Currently in Devnet Testing Phase</span>
+              </div>
+              
+              {/* Official Token Info */}
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm text-gray-400">The one and only official gor/acc token:</p>
+                <div className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg group hover:border-orange-500/50 transition-all">
+                  <code className="text-xs font-mono text-orange-400">31TxE8kyhUJfq8JPeJNTdVPZeibQrcNnDbkvnigVpump</code>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText('31TxE8kyhUJfq8JPeJNTdVPZeibQrcNnDbkvnigVpump');
+                      const btn = document.getElementById('copy-token-btn');
+                      if (btn) {
+                        btn.textContent = '✓';
+                        setTimeout(() => {
+                          btn.textContent = '📋';
+                        }, 1500);
+                      }
+                    }}
+                    className="p-1 hover:bg-gray-700 rounded transition-colors"
+                    title="Copy contract address"
+                  >
+                    <span id="copy-token-btn" className="text-sm">📋</span>
+                  </button>
                 </div>
               </div>
             </div>
